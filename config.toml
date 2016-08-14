@@ -1,0 +1,13 @@
+baseurl = "https://matthewtyler.io/"
+languageCode = "en-us"
+title = "Matthew Tyler"
+theme = "matt-zen"
+
+[params]
+  logo = "/images/logo.png"
+  copyright = "Matthew Tyler"
+  email = "me@matthewtyler.io"
+  twitter = "https://twitter.com/MatthewTyler13"
+  gitlab = "https://gitlab.com/u/flashics"
+  linkedin = "https://au.linkedin.com/in/iammatthewtyler"
+  analytics = "UA-46400513-1"
