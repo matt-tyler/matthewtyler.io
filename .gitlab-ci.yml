@@ -2,7 +2,7 @@ image: publysher/hugo
 
 pages:
     script:
-    - hugo
+    - hugo -t=matt-zen
     artifacts:
       paths:
       - public

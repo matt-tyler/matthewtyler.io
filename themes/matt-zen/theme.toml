@@ -1,0 +1,11 @@
+name = "Matt Zen"
+license = "MIT"
+licenselink = "https://github.com/rakuishi/hugo-zen/blob/master/LICENSE.md"
+description = "Matt Zen is a minimal hugo theme based on Hugo Zen."
+tags = ["blog"]
+features = ["blog", "themes"]
+min_version = 0.13
+
+[author]
+    name = "OCHIISHI Koichiro"
+    homepage = "http://rakuishi.com/"
