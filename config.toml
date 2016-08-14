@@ -1,4 +1,4 @@
-baseurl = "https://matthewtyler.io/"
+baseurl = "http://matthewtyler.io/"
 languageCode = "en-us"
 title = "Matthew Tyler"
 theme = "matt-zen"
