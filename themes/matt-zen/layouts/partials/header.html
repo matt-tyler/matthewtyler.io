@@ -9,16 +9,31 @@
 <link rel="stylesheet" href="/css/normalize.css">
 <link rel="stylesheet" href="/css/skeleton.css">
 <link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="alternate" href="/index.xml" type="application/rss+xml" title="{{ .Site.Title }}">
 <title>{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}</title>
 </head>
 <body>
 
 <div class="container">
-
+<div class="row">
 	<header role="banner">
-		<div class="header-logo">
+		<div class="header-logo four columns">
 			<a href="/"><img src="{{ .Site.Params.logo }}" width="60" height="60"></a>
 		</div>
-		{{ if eq $isHomePage true }}<h1 class="site-title">{{ .Site.Title }}</h1>{{ end }}
+		<div class="four columns">
+			<h1 class="site-title">{{ .Site.Title }}</h1>
+		</div>
+		<div class="three columns">
+			<div class="social">
+				{{ range .Site.Params.social }}
+				<span class="icon">
+					<a href="{{ .url }}">
+						<i class="fa {{ .fa_icon}} fa-2x"></i>
+					</a>
+				</span>
+				{{end}}
+			</div>
+		</div>
 	</header>
+</div>

@@ -1,7 +1,8 @@
 baseurl = "https://www.matthewtyler.io/"
 languageCode = "en-us"
-title = "Matthew Tyler"
+title = "matthewtyler.io"
 theme = "matt-zen"
+disqusShortname = "https-www-matthewtyler-io"
 
 [params]
   logo = "/images/logo.png"
@@ -11,3 +12,21 @@ theme = "matt-zen"
   gitlab = "https://gitlab.com/u/flashics"
   linkedin = "https://au.linkedin.com/in/iammatthewtyler"
   analytics = "UA-46400513-1"
+
+
+
+[[params.social]]
+url = "https://github.com/matt-tyler"
+fa_icon = "fa-github"
+
+[[params.social]]
+url = "https://gitlab.com/u/flashics"
+fa_icon = "fa-gitlab"
+
+[[params.social]]
+url = "https://twitter.com/MatthewTyler13"
+fa_icon = "fa-twitter"
+
+[[params.social]]
+url = "https://au.linkedin.com/in/iammatthewtyler"
+fa_icon = "fa-linkedin"
