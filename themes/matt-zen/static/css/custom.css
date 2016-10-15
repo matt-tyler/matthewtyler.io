@@ -19,12 +19,13 @@ img {
 
 header,
 footer {
-  margin: 4rem 0;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   height: 60px;
 }
 
 main {
-  margin: 4rem 0;
+  margin: 3rem 0;
 }
 
 .container {
@@ -34,11 +35,9 @@ main {
 
 .header-logo img {
   width: 60px;
-  height: 60px;
-}
-
-.header-logo img:hover {
-  border-color: #F1F1F1;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
 }
 
 .site-title {
@@ -65,10 +64,7 @@ main {
 }
 
 .social {
-  height: 75px;
-  line-height: 75px;
-  vertical-align: center;
-  text-align: right;
+  text-align: center;
 }
 
 .hr {
@@ -82,10 +78,15 @@ main {
 
 .icon {
   margin-left: 12px;
+  margin-right: 12px;
   text-decoration: none
 }
 
 .icon a {
   color: black;
   text-decoration: none;
+}
+
+.title {
+  text-align: center;
 }

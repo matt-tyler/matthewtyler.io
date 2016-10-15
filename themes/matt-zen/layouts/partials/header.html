@@ -18,12 +18,10 @@
 <div class="container">
 <div class="row">
 	<header role="banner">
-		<div class="header-logo four columns">
-			<a href="/"><img src="{{ .Site.Params.logo }}" width="60" height="60"></a>
-		</div>
-		<div class="four columns">
+		<div class="title twelve columns">
 			<h1 class="site-title">{{ .Site.Title }}</h1>
 		</div>
+		<!--
 		<div class="three columns">
 			<div class="social">
 				{{ range .Site.Params.social }}
@@ -35,5 +33,20 @@
 				{{end}}
 			</div>
 		</div>
+		-->
 	</header>
 </div>
+<div class="row">
+	<div class="twelve columns">
+		<div class="social">
+			{{ range .Site.Params.social }}
+			<span class="icon">
+						<a href="{{ .url }}">
+							<i class="fa {{ .fa_icon}} fa-2x"></i>
+						</a>
+					</span>
+			{{end}}
+		</div>
+	</div>
+</div>
+
