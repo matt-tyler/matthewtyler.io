@@ -1,0 +1,25 @@
++++
+date = "2017-08-01"
+title = "Setting sail with Kubernetes Custom Resources - Part 1"
++++
+
+<center><img src="/images/kubernetes.png" itemprop="image" alt="Kubernetes"></center>
+
+
+Kubernetes is popularly known as a way to manage container workloads across a cluster of machines. To the administrator, this is mostly done by invoking commands using the excellent 'kubectl' tool - typically defining collections of containers, services and other resources in declarative yaml files. I am an unabashed fan of this style of declarative resource management for several reasons. From an end-user perspective, it is easy to reason about why should be running at any one time - it's all there in the files. A follow on effect is that I can manage these files in source control, in effect giving me a complete history of what changes have been made over time and when. Lastly, everything follows a structured, consistent and enforceable schema. I certainly don't get that from bash and python scripts. Whilst I like configuration management tools like chef, puppet, salt, ansible et al, there is still more opportunity for shenanigans than I would prefer.
+
+I've followed Kubernetes and the rest of the container ecosystem for some time. I initially took an interest in the container ecosystem back in 2014; I was keenly following the activities of CoreOS back when their only offerings were fleet, etcd, and Container Linux (although back then it was still carrying the same badge as it's parent). My main interest stems from experience as a system administrator, having to deal with pet servers and inconsistent configuration. The concept of a complete runtime packaging format, along with a way to store configuration, whilst abstracting most of the underlying hardware is certainly a liberating one. The previously mentioned tools go a long way to making this easier to manage - but it doesn't solve the problem entirely. I don't particularly like having to provision VM's to become targets for other scripts - I just want to run some software!
+
+Back to Kubernetes. So I can declare my state and submit it to the cluster. The cluster will then work out what it needs to to fulfil that state. Great. But *how* does it do this?
+
+Kubernetes fundamentally operates like a sort of control system. First it receives a declaration of state - often through the use of a yaml file submitted by the kubectl tool. Kubernetes then performs a kind of 'diff' against the declaration of state that was submitted, and the actually running state of the cluster. From this diff, Kubernetes then takes action to modify its actual state to be equal the declared state. I've seen this often referred to as a 'reconciliation loop'.
+
+If it was difficult to understand that from just a textual description, here is an old time-tested example from electrical engineering classes the world over - a tank whereby the water level is observed by a sensor. Water is pumped into the tank whilst the sensor cannot observe any water at a fixed level. If the water is below the level, it will be pumped in, whilst if it above, it will be drained. Fundamentally, the sensor observes some the state of the environment, whilst the controller acts on this observed state to reconcile it to some ideal state.
+
+<center><img src="/images/water-tank.png" itemprop="image" alt="Simple water tank controller"></center>
+
+Kubernetes offer several different controllers, many of whom compose controllers from different systems. For example, the deployment controller calls down to the replica set controller, which in turn calls down to the pod controller. By maintaining this hierarchy of controllers, it is possible to compose complex systems whilst also guaranteeing a high degree of reliability is maintained - after all, if anything fails the controller will attempt to drive the state back towards the declared ideal.
+
+Managing this state across a distributed system requires that state can be stored in consistently and in a highly available manner. A system is only as reliable as it's weakest link - we cannot have a highly available cluster scheduler if it's state is not also highly available. Kubernetes stores its state in [ETCD](https://coreos.com/etcd/), a distributed key-value store that is developed by CoreOS. In addition to providing storage of state, it provides the ability to watch keys for changes - a clearly important feature for any kind of scalable control system!
+
+Direct interaction with ETCD is not necessary to build a customer controller. Kubernetes provides a [golang client](https://github.com/kubernetes/client-go) (a python client is currently in incubation) to interact with a Kubernetes cluster, as well as providing some higher order abstractions to make it easier to develop controllers for different kinds of resources.
